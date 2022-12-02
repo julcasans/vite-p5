@@ -1,34 +1,40 @@
-import { Pane } from 'tweakpane/dist/tweakpane.js'
+import { Pane } from 'tweakpane/dist/tweakpane.js';
 
 export class ControlPanel {
   constructor() {
-    this.pane = new Pane()
+    this.pane = new Pane();
 
     this.settingsFolder = this.pane.addFolder({
-      title: 'Settings'
-    })
-    
+      title: 'Settings',
+    });
+
     const btnSaveCanvas = this.pane.addButton({
-      title: 'Save canvas'
-    })
-    
+      title: 'Save canvas',
+    });
+
     btnSaveCanvas.on('click', () => {
-      saveCanvas('canvas', 'jpg')
-    })
+      saveCanvas('canvas', 'jpg');
+    });
   }
 
-  setParams(params) {
-    Object.keys(params).forEach(k => {
-      this.settingsFolder.addInput(params, k)  
-    })
-    
+  setParams(params, options) {
+    Object.keys(params).forEach((k) => {
+      this.settingsFolder.addInput(params, k, options[k]);
+    });
+
     const btnExportSettings = this.settingsFolder.addButton({
-      title: 'Export settings'
-    })
+      title: 'Export settings',
+    });
 
     btnExportSettings.on('click', () => {
-      const preset = this.pane.exportPreset()
-      console.log(preset)
-    })
+      const preset = this.pane.exportPreset();
+      console.log(preset);
+    });
+  }
+
+  onChange(fn) {
+    this.pane.on('change', function (evt) {
+      fn(evt);
+    });
   }
 }

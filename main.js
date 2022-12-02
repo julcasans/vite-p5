@@ -1,5 +1,6 @@
-import 'p5/lib/p5.js'
-import { setup, draw } from './sketch.js'
+import 'p5/lib/p5.js';
+import * as $p5 from './sketch.js';
 
-window.setup = setup
-window.draw = draw
+Object.keys($p5).forEach((k) => {
+  window[k] = $p5[k];
+});
