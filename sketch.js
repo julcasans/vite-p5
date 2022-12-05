@@ -1,3 +1,4 @@
+import * as p5 from 'p5/lib/p5.js';
 import { ControlPanel } from './controls.js';
 
 const pane = new ControlPanel();
