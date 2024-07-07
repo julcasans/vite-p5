@@ -19,7 +19,7 @@ export class ControlPanel {
 
   setParams(params, options) {
     Object.keys(params).forEach((k) => {
-      this.settingsFolder.addInput(params, k, options[k]);
+      this.settingsFolder.addBinding(params, k, options[k]);
     });
 
     const btnExportSettings = this.settingsFolder.addButton({
